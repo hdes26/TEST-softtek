@@ -10,9 +10,16 @@ provider:
   region: us-east-1
 
 functions:
-  hello:
-    handler: dist/health/handler.health
+  health:
+    handler: dist/health/health.handler
     events:
       - http:
           path: health
+          method: get
+          
+  swampiToSpanish:
+    handler: dist/swampiToSpanish/swampiToSpanish.handler
+    events:
+      - http:
+          path: swampiToSpanish
           method: get
