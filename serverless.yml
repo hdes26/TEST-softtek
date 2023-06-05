@@ -1,0 +1,18 @@
+service: my-serverless-project
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+functions:
+  hello:
+    handler: dist/health/handler.health
+    events:
+      - http:
+          path: health
+          method: get
