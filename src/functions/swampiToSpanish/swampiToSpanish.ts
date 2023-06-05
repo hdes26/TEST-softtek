@@ -1,15 +1,9 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
+import { Character, SwapiResponse, SwapiTranslationMap } from './interfaces/swampiToSpanish.interface';
 
 
 export const handler = async () => {
 
-    interface SwapiResponse {
-        [key: string]: any;
-    }
-
-    interface SwapiTranslationMap {
-        [key: string]: string;
-    }
 
     const swapiTranslations: SwapiTranslationMap = {
         name: 'nombre',
@@ -62,7 +56,7 @@ export const handler = async () => {
         try {
             const swapiUrl = 'https://swapi.dev/api/people/1';
             const datosSWAPI = await makeSwapiRequest<SwapiResponse>(swapiUrl);
-            const datosTraducidos = mapAttributes(datosSWAPI, swapiTranslations);
+            const datosTraducidos: Character = mapAttributes(datosSWAPI, swapiTranslations);
 
             return {
                 statusCode: 200,
