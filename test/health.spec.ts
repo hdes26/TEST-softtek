@@ -1,4 +1,4 @@
-import { handler } from '../src/functions/health/health';
+import { handler } from '../src/health'
 import { expect } from 'chai';
 
 describe('Health function', () => {

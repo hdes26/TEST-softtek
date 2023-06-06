@@ -11,8 +11,8 @@ import { createMovie } from '../core/schema';
 
 
 
-const handler = middy(async (event: any) => {
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
+const handler = middy(async (event: any, context: any) => {
+    const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
     const { title, releaseYear, director, genre, durationMinutes, rating, description } = event.body as IAddMovie;
 
@@ -30,11 +30,13 @@ const handler = middy(async (event: any) => {
         done: false
     }
     
-
+    
     await dynamodb.put({
         TableName: 'MovieTable',
-        Item: newMovie
+        Item: newMovie,
     }).promise()
+    
+    console.log(`Function ID: ${context.functionName}`);
 
     return {
         statusCode: 200,
