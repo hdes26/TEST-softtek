@@ -17,25 +17,27 @@ provider:
 
 functions:
   health:
-    handler: dist/health/health.handler
+    handler: dist/health.handler
     events:
       - http:
           path: health
           method: get
           
-  swampiToSpanish:
-    handler: dist/swampiToSpanish/swampiToSpanish.handler
+  createMovie:
+    handler: dist/features/movie/functions/create.handler
     events:
       - http:
-          path: swampiToSpanish
+          path: createMovie
+          method: post  
+          
+  swampiToSpanish:
+    handler: dist/features/swapi/functions/swapiToSpanish.handler
+    events:
+      - http:
+          path: swapiToSpanish
           method: get
 
-  addMovie:
-    handler: dist/addMovie/addMovie.handler
-    events:
-      - http:
-          path: addMovie
-          method: post
+
 
 
 resources:
