@@ -24,12 +24,40 @@ functions:
           method: get
           
   createMovie:
-    handler: dist/features/movie/functions/create.handler
+    handler: dist/features/movie/functions/createMovie.handler
     events:
       - http:
-          path: createMovie
-          method: post  
-          
+          path: movie
+          method: post 
+
+  getMovie:
+    handler: dist/features/movie/functions/getMovie.handler
+    events:
+      - http:
+          path: movie/{id}
+          method: get 
+
+  getMovies:
+    handler: dist/features/movie/functions/getMovies.handler
+    events:
+      - http:
+          path: movie
+          method: get 
+
+  updateMovie:
+    handler: dist/features/movie/functions/updateMovie.handler
+    events:
+      - http:
+          path: movie/{id}
+          method: put 
+
+  deleteMovie:
+    handler: dist/features/movie/functions/deleteMovie.handler
+    events:
+      - http:
+          path: movie/{id}
+          method: delete
+
   swampiToSpanish:
     handler: dist/features/swapi/functions/swapiToSpanish.handler
     events:

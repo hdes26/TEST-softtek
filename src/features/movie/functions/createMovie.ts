@@ -1,13 +1,12 @@
 import { v4 } from 'uuid'
 import AWS from 'aws-sdk'
-import { IAddMovie } from '../core/interfaces/addMovie.interface';
+import { IAddMovie } from '../core/interfaces/movie.interface';
 
 export const handler = async (event: any) => {
     const dynamodb = new AWS.DynamoDB.DocumentClient();
 
     const { title, releaseYear, director, genre, durationMinutes, rating, description } = JSON.parse(event.body) as IAddMovie;
 
-    const createdAt = new Date();
     const id = v4();
 
     const newMovie = {
@@ -19,7 +18,7 @@ export const handler = async (event: any) => {
         durationMinutes,
         rating,
         description,
-        createdAt
+        done: false
     }
 
     await dynamodb.put({
@@ -31,6 +30,6 @@ export const handler = async (event: any) => {
         statusCode: 200,
         body: newMovie
     }
-    
+
 }
 
