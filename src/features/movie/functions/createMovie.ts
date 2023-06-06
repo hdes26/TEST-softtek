@@ -4,10 +4,10 @@ import { IAddMovie } from '../core/interfaces/movie.interface';
 
 import middy from '@middy/core';
 import jsonBodyParser from '@middy/http-json-body-parser';
-import validator from '@middy/validator'
-import { transpileSchema } from '@middy/validator/transpile'
-import httpErrorHandler from '@middy/http-error-handler'
-import { createMovie } from '../core/schema/createMovie.schema';
+import validator from '@middy/validator';
+import { transpileSchema } from '@middy/validator/transpile';
+import httpErrorHandler from '@middy/http-error-handler';
+import { createMovie } from '../core/schema';
 
 
 
