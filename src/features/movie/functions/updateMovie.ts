@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk'
 import { validate as validateUUID } from 'uuid';
+import { IUpdateMovie } from '../core/interfaces/movie.interface';
 
 export const handler = async (event: any) => {
 
@@ -13,7 +14,7 @@ export const handler = async (event: any) => {
         };
     }
 
-    const { title, rating, description, done } = JSON.parse(event.body);
+    const { title, rating, description, done } = JSON.parse(event.body) as IUpdateMovie;
 
     await dynamodb.update({
         TableName: 'MovieTable',
