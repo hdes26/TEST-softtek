@@ -1,14 +1,8 @@
 import AWS from 'aws-sdk'
 
-import middy from '@middy/core';
-import validator from '@middy/validator';
-import { transpileSchema } from '@middy/validator/transpile';
-import httpErrorHandler from '@middy/http-error-handler';
-
 import { validate as validateUUID } from 'uuid';
-import { getMovie } from '../core/schema';
 
-const handler = middy(async (event: any, context:any) => {
+export const handler = async (event: any, context:any) => {
 
     const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
     const { id } = event.pathParameters;
@@ -43,15 +37,4 @@ const handler = middy(async (event: any, context:any) => {
         body: JSON.stringify(movie)
     }
 
-});
-
-
-handler
-    .use(httpErrorHandler())
-    .use(
-        validator({
-            eventSchema: transpileSchema(getMovie)
-        })
-    )
-
-export { handler };
+};
