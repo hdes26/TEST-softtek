@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { SwapiResponse } from '../core/interfaces/swampiToSpanish.interface';
+import { SwapiResponse } from '../core/interfaces/character.interface';
 
 
 export const handler = async () => {

@@ -1,11 +1,3 @@
-export interface SwapiResponse {
-    [key: string]: any;
-}
-
-export interface SwapiTranslationMap {
-    [key: string]: string;
-}
-
 export interface Character {
     nombre: string;
     altura: string;
@@ -23,4 +15,12 @@ export interface Character {
     creado: string;
     editado: string;
     url: string;
+}
+
+export interface SwapiResponse {
+    [key: string]: any;
+}
+
+export interface SwapiTranslationMap {
+    [key: string]: string;
 }
