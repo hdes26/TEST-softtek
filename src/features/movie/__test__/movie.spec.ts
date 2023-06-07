@@ -24,7 +24,7 @@ describe('movie functions', () => {
             }
         }
 
-        const result = await createMovie.handler(event, { functionName: 'create movie' });
+        const result = await createMovie.handler(event);
 
         expect(result.statusCode).to.equal(200);
         expect(JSON.parse(result!.body)).to.contain({} as IMovie);
@@ -40,7 +40,7 @@ describe('movie functions', () => {
             },
         };
 
-        const result = await getMovie.handler(event, { functionName: 'get one movie' });
+        const result = await getMovie.handler(event);
 
 
 
@@ -75,7 +75,7 @@ describe('movie functions', () => {
             }
         }
 
-        const result = await updateMovie.handler(event, { functionName: 'update movie' });
+        const result = await updateMovie.handler(event);
 
 
         expect(result!.statusCode).to.equal(200);
@@ -90,7 +90,7 @@ describe('movie functions', () => {
             }
         }
 
-        const result = await deleteMovie.handler(event, { functionName: 'delete movie' });
+        const result = await deleteMovie.handler(event);
 
 
         expect(result.statusCode).to.equal(200);

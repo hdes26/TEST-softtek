@@ -2,7 +2,7 @@ import AWS from 'aws-sdk'
 
 import { validate as validateUUID } from 'uuid';
 
-export const handler = async (event: any, context:any) => {
+export const handler = async (event: any) => {
 
     const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
     const { id } = event.pathParameters;
@@ -29,8 +29,6 @@ export const handler = async (event: any, context:any) => {
     }
 
     const movie = result.Item;
-
-    console.log('Functions ' + context.functionName);
     
     return {
         statusCode: 200,

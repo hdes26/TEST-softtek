@@ -1,16 +1,7 @@
 import AWS from 'aws-sdk'
-import { IUpdateMovie } from '../core/interfaces/movie.interface';
-
-import middy from '@middy/core';
-import jsonBodyParser from '@middy/http-json-body-parser';
-import validator from '@middy/validator';
-import { transpileSchema } from '@middy/validator/transpile';
-import httpErrorHandler from '@middy/http-error-handler';
-
 import { validate as validateUUID } from 'uuid';
-import { updateMovie } from '../core/schema';
 
-const handler = middy(async (event: any, context: any) => {
+export const handler = async (event: any) => {
 
     const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
     const { id } = event.pathParameters;
@@ -22,7 +13,7 @@ const handler = middy(async (event: any, context: any) => {
         };
     }
 
-    const { title, rating, description, done } = event.body as IUpdateMovie;
+    const { title, rating, description, done } = JSON.parse(event.body);
 
     await dynamodb.update({
         TableName: 'MovieTable',
@@ -38,23 +29,9 @@ const handler = middy(async (event: any, context: any) => {
         ReturnValues: 'ALL_NEW'
     }).promise()
 
-    console.log(`Function: ${context.functionName}`);
-
     return {
         statusCode: 200,
         body: JSON.stringify({ message: 'Movie updated successfully' })
     }
 
-});
-
-handler
-    .use(jsonBodyParser())
-    .use(httpErrorHandler())
-    .use(
-        validator({
-            eventSchema: transpileSchema(updateMovie)
-        })
-    )
-
-export { handler };
-
+};
