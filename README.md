@@ -23,6 +23,13 @@ npm run start:dev
 
 ```
 
+## Testing
+
+```
+npm run test
+
+```
+
 ## Recursos 🔗
 [Repositorio Github](https://github.com/hdes26/TEST-softtek.git) 
 
