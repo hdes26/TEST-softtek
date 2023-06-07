@@ -19,7 +19,10 @@ provider:
 custom: 
   autoswagger:
     typefiles: ['./src/types/movie.d.ts']
+    apiType: 'http'
     basePath: '/dev'
+    host: '894e2q7rij.execute-api.us-east-1.amazonaws.com'
+    schemes: ['https', 'http']
 
 functions:
   health:
@@ -28,6 +31,8 @@ functions:
       - http:
           path: health
           method: get
+          cors: 
+            origin : '*'
           
   createMovie:
     handler: dist/features/movie/functions/createMovie.handler
@@ -39,6 +44,8 @@ functions:
           swaggerTags: ['Movie']
           responses:
             200: "Movie created successfully"
+          cors: 
+            origin : '*'
 
   getMovie:
     handler: dist/features/movie/functions/getMovie.handler
@@ -49,6 +56,8 @@ functions:
           swaggerTags: ['Movie']
           responses:
             200: "Movie listed successfully"
+          cors: 
+            origin : '*'
 
   getMovies:
     handler: dist/features/movie/functions/getMovies.handler
@@ -59,6 +68,8 @@ functions:
           swaggerTags: ['Movie']
           responses:
             200: "Movies listed successfully"
+          cors: 
+            origin : '*'
 
   updateMovie:
     handler: dist/features/movie/functions/updateMovie.handler
@@ -70,6 +81,8 @@ functions:
           swaggerTags: ['Movie']
           responses:
             200: "Movie updated successfully"
+          cors: 
+            origin : '*'
 
   deleteMovie:
     handler: dist/features/movie/functions/deleteMovie.handler
@@ -80,6 +93,8 @@ functions:
           swaggerTags: ['Movie']
           responses:
             200: "Movie deleted successfully"
+          cors: 
+            origin : '*'
 
 
   swapiGetCharacters:
@@ -91,6 +106,8 @@ functions:
           swaggerTags: ['Swapi']
           responses:
             200: "Get star wars's characters"
+          cors: 
+            origin : '*'
 
   swapiGetCharacter:
     handler: dist/features/swapi/functions/getCharacters.handler
@@ -101,6 +118,8 @@ functions:
           swaggerTags: ['Swapi']
           responses:
             200: "Get star wars's character"
+          cors: 
+            origin : '*'
 
   swapiGetStarchipsByCharacter:
     handler: dist/features/swapi/functions/getStarshipsByCharacter.handler
@@ -111,6 +130,8 @@ functions:
           swaggerTags: ['Swapi']
           responses:
             200: "Get star wars's starchip by character"
+          cors: 
+            origin : '*'
 
 
 
