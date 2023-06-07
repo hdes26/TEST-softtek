@@ -52,7 +52,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Movie created successfully"
           }
         }
       },
@@ -72,7 +72,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Movies listed successfully"
           }
         }
       }
@@ -101,7 +101,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Movie listed successfully"
           }
         }
       },
@@ -137,7 +137,7 @@
         ],
         "responses": {
           "200": {
-            "description": "{ message: Movie updated successfully}"
+            "description": "Movie updated successfully"
           }
         }
       },
@@ -164,7 +164,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Movie deleted successfully"
           }
         }
       }
@@ -193,7 +193,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Get star wars's characters"
           }
         }
       }
@@ -215,7 +215,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Get star wars's character"
           }
         }
       }
@@ -244,7 +244,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Get star wars's starchip by character"
           }
         }
       }
@@ -379,5 +379,10 @@
     }
   },
   "securityDefinitions": {},
-  "basePath": "/dev"
+  "basePath": "/dev",
+  "host": "894e2q7rij.execute-api.us-east-1.amazonaws.com",
+  "schemes": [
+    "https",
+    "http"
+  ]
 };
