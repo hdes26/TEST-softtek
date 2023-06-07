@@ -1,5 +1,5 @@
-import { Character } from '../src/features/swapi/core/interfaces/swampiToSpanish.interface';
-import { handler } from '../src/features/swapi/functions/swapiToSpanish';
+import { Character } from '../core/interfaces/swampiToSpanish.interface';
+import { handler } from '../functions/swapiToSpanish';
 import { expect } from 'chai';
 
 describe('swampiToSpanish function', () => {
