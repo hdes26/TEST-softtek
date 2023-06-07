@@ -36,7 +36,7 @@ const handler = middy(async (event: any, context: any) => {
         Item: newMovie,
     }).promise()
     
-    console.log(`Function ID: ${context.functionName}`);
+    console.log(`Function: ${context.functionName}`);
 
     return {
         statusCode: 200,

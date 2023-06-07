@@ -1,4 +1,4 @@
-export interface Character {
+export interface ICharacterInSpanish {
     nombre: string;
     altura: string;
     masa: string;
@@ -17,10 +17,29 @@ export interface Character {
     url: string;
 }
 
-export interface SwapiResponse {
+export interface ICharacter {
+    name: string;
+    height: string;
+    mass: string;
+    hair_color: string;
+    skin_color: string;
+    eye_color: string;
+    birth_year: string;
+    gender: string;
+    homeworld: string;
+    films: string[];
+    species: string[];
+    vehicles: string[];
+    starships: string[];
+    created: string;
+    edited: string;
+    url: string;
+}
+
+export interface ISwapiResponse {
     [key: string]: any;
 }
 
-export interface SwapiTranslationMap {
+export interface ICharacterTranslationsMap {
     [key: string]: string;
 }

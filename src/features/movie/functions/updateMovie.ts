@@ -2,6 +2,7 @@ import AWS from 'aws-sdk'
 import { IUpdateMovie } from '../core/interfaces/movie.interface';
 
 import middy from '@middy/core';
+import jsonBodyParser from '@middy/http-json-body-parser';
 import validator from '@middy/validator';
 import { transpileSchema } from '@middy/validator/transpile';
 import httpErrorHandler from '@middy/http-error-handler';
@@ -9,9 +10,9 @@ import httpErrorHandler from '@middy/http-error-handler';
 import { validate as validateUUID } from 'uuid';
 import { updateMovie } from '../core/schema';
 
-const handler = middy(async (event: any) => {
+const handler = middy(async (event: any, context: any) => {
 
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
+    const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
     const { id } = event.pathParameters;
 
     if (!validateUUID(id)) {
@@ -19,7 +20,7 @@ const handler = middy(async (event: any) => {
             statusCode: 400,
             body: JSON.stringify({ error: 'The ID is not a valid UUID' }),
         };
-    }    
+    }
 
     const { title, rating, description, done } = event.body as IUpdateMovie;
 
@@ -37,7 +38,7 @@ const handler = middy(async (event: any) => {
         ReturnValues: 'ALL_NEW'
     }).promise()
 
-
+    console.log(`Function: ${context.functionName}`);
 
     return {
         statusCode: 200,
@@ -47,6 +48,7 @@ const handler = middy(async (event: any) => {
 });
 
 handler
+    .use(jsonBodyParser())
     .use(httpErrorHandler())
     .use(
         validator({

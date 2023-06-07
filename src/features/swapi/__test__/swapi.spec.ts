@@ -1,11 +1,11 @@
-import { Character } from '../core/interfaces/swampiToSpanish.interface';
-import { handler } from '../functions/swapiToSpanish';
+import { ICharacterInSpanish } from '../core/interfaces/character.interface';
 import { expect } from 'chai';
+import { getCharacter, getCharacters, getStarshipsByCharacter } from '../functions';
 
-describe('swampiToSpanish function', () => {
-  
-  it('should return the correct message', async () => {
-    const expectedCharacter: Character = {
+describe('swapi functions', () => {
+
+  it('get character', async () => {
+    const expectedCharacter: ICharacterInSpanish = {
       nombre: "Luke Skywalker",
       altura: "172",
       masa: "77",
@@ -35,9 +35,39 @@ describe('swampiToSpanish function', () => {
       url: "https://swapi.dev/api/people/1/"
     };
 
-    const response = await handler();
+    const event = {
+      pathParameters: {
+        id: 1
+      },
+    };
+
+    const response = await getCharacter.handler(event);
 
     expect(response!.statusCode).to.be.equal(200);
     expect(JSON.parse(response!.body)).to.deep.equal(expectedCharacter);
   });
+
+  it('get characters', async () => {
+
+    const response = await getCharacters.handler();
+
+    expect(response!.statusCode).to.be.equal(200);
+
+
+  });
+
+  it('get starchips by character', async () => {
+
+    const event = {
+      pathParameters: {
+        id: 1
+      },
+    };
+
+    const response = await getStarshipsByCharacter.handler(event);
+
+    expect(response!.statusCode).to.be.equal(200);
+  });
+
+
 });

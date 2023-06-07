@@ -80,12 +80,6 @@ functions:
           path: starshipByCharacter/{id}
           method: get
 
-  swapiToSpanish:
-    handler: dist/features/swapi/functions/swapiToSpanish.handler
-    events:
-      - http:
-          path: swapiToSpanish
-          method: get
 
 
 

@@ -8,9 +8,9 @@ import httpErrorHandler from '@middy/http-error-handler';
 import { validate as validateUUID } from 'uuid';
 import { getMovie } from '../core/schema';
 
-const handler = middy(async (event: any) => {
+const handler = middy(async (event: any, context:any) => {
 
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
+    const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
     const { id } = event.pathParameters;
 
     if (!validateUUID(id)) {
@@ -36,7 +36,8 @@ const handler = middy(async (event: any) => {
 
     const movie = result.Item;
 
-
+    console.log('Functions ' + context.functionName);
+    
     return {
         statusCode: 200,
         body: JSON.stringify(movie)

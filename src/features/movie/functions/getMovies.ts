@@ -4,7 +4,7 @@ import AWS from 'aws-sdk'
 export const handler = async () => {
 
     try {
-        const dynamodb = new AWS.DynamoDB.DocumentClient();
+        const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
         
         const result = await dynamodb.scan({
