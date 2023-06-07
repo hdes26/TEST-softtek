@@ -1,4 +1,4 @@
-# Prueba Tecnica Bonum Hernan Escorcia
+# Prueba Tecnica Softtek Hernan Escorcia
 
 
 ## Instalación 🔧
