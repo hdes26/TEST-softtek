@@ -1,8 +1,9 @@
 service: my-serverless-project
 
 plugins:
-  - serverless-offline
+  - serverless-auto-swagger
   - serverless-plugin-typescript
+  - serverless-offline
 
 provider:
   name: aws
@@ -14,6 +15,11 @@ provider:
         - dynamodb:*
       Resource:
         - arn:aws:dynamodb:us-east-1:880993530241:table/MovieTable
+
+custom: 
+  autoswagger:
+    typefiles: ['./src/types/movie.d.ts']
+    basePath: '/dev'
 
 functions:
   health:
@@ -27,22 +33,32 @@ functions:
     handler: dist/features/movie/functions/createMovie.handler
     events:
       - http:
-          path: movie
           method: post 
+          path: movie
+          bodyType: CreateMovie
+          swaggerTags: ['Movie']
+          responses:
+            200: "Movie created successfully"
 
   getMovie:
     handler: dist/features/movie/functions/getMovie.handler
     events:
       - http:
+          method: get
           path: movie/{id}
-          method: get 
+          swaggerTags: ['Movie']
+          responses:
+            200: "Movie listed successfully"
 
   getMovies:
     handler: dist/features/movie/functions/getMovies.handler
     events:
       - http:
-          path: movie
           method: get 
+          path: movie
+          swaggerTags: ['Movie']
+          responses:
+            200: "Movies listed successfully"
 
   updateMovie:
     handler: dist/features/movie/functions/updateMovie.handler
@@ -50,6 +66,10 @@ functions:
       - http:
           path: movie/{id}
           method: put 
+          bodyType: UpdateMovie
+          swaggerTags: ['Movie']
+          responses:
+            200: "Movie updated successfully"
 
   deleteMovie:
     handler: dist/features/movie/functions/deleteMovie.handler
@@ -57,6 +77,9 @@ functions:
       - http:
           path: movie/{id}
           method: delete
+          swaggerTags: ['Movie']
+          responses:
+            200: "Movie deleted successfully"
 
 
   swapiGetCharacters:
@@ -65,6 +88,9 @@ functions:
       - http:
           path: character/{id}
           method: get
+          swaggerTags: ['Swapi']
+          responses:
+            200: "Get star wars's characters"
 
   swapiGetCharacter:
     handler: dist/features/swapi/functions/getCharacters.handler
@@ -72,6 +98,9 @@ functions:
       - http:
           path: character
           method: get
+          swaggerTags: ['Swapi']
+          responses:
+            200: "Get star wars's character"
 
   swapiGetStarchipsByCharacter:
     handler: dist/features/swapi/functions/getStarshipsByCharacter.handler
@@ -79,6 +108,9 @@ functions:
       - http:
           path: starshipByCharacter/{id}
           method: get
+          swaggerTags: ['Swapi']
+          responses:
+            200: "Get star wars's starchip by character"
 
 
 
